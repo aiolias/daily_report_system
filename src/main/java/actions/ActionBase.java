@@ -74,6 +74,7 @@ public abstract class ActionBase {
 
             //発生した例外をコンソールに表示
             e.printStackTrace();
+
             //commandの値が不正で実行できない場合エラー画面を呼び出し
             forward(ForwardConst.FW_ERR_UNKNOWN);
         }
@@ -110,7 +111,7 @@ public abstract class ActionBase {
          //URLを構築
          String redirectUrl = request.getContextPath() + "/?action" + action.getValue();
          if (command != null) {
-             redirectUrl = redirectUrl + "&command" + command.getValue();
+             redirectUrl = redirectUrl + "&command=" + command.getValue();
          }
 
          //URLへリダイレクト
