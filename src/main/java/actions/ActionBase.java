@@ -109,7 +109,7 @@ public abstract class ActionBase {
              throws ServletException, IOException {
 
          //URLを構築
-         String redirectUrl = request.getContextPath() + "/?action" + action.getValue();
+         String redirectUrl = request.getContextPath() + "/?action=" + action.getValue();
          if (command != null) {
              redirectUrl = redirectUrl + "&command=" + command.getValue();
          }
