@@ -126,7 +126,7 @@ public class EmployeeService extends ServiceBase {
      * @param pepper pepper文字列
      * @return バリデーションや更新処理中に発生したエラーのリスト
      */
-    public List<String> update(Employee ev, String pepper) {
+    public List<String> update(EmployeeView ev, String pepper) {
 
         //idを条件に登録済の従業員情報を取得する
         EmployeeView savedEmp = findOne(ev.getId());
