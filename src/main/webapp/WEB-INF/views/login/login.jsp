@@ -21,14 +21,14 @@
         <h2>ログイン</h2>
         <form method="POST" action="<c:url value='/?action=${action}&command=${command}' />">
             <label for="${AttrivuteConst.EMP_CODE.getValue()}">社員番号</label><br />
-            <input type="text" name="${AttrivuteConst.EMP_CODE.getValue()}" id="${AttrivuteConst.EMP_CODE.getValue()}" value="${code}" />
+            <input type="text" name="${AttributeConst.EMP_CODE.getValue()}" id="${AttributeConst.EMP_CODE.getValue()}" value="${code}" />
             <br /><br />
 
             <label for="${AttributeConst.EMP_PASS.getValue()}">パスワード</label><br />
             <input type="password" name="${AttributeConst.EMP_PASS.getValue()}" id="${AttributeConst.EMP_PASS.getValue()}" />
             <br /><br />
 
-            <input type="hidden" name="${AttrivuteConst.TOKEN.getValue()}" value="${_token}" />
+            <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
             <button type="submit">ログイン</button>
         </form>
     </c:param>
