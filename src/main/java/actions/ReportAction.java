@@ -105,13 +105,13 @@ public class ReportAction extends ActionBase {
             //セッションからログイン中の従業員情報を取得
             EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
-            //パラメータんｐ値をもとに日報情報のインスタンスを作成する
+            //パラメータ値をもとに日報情報のインスタンスを作成する
             ReportView rv = new ReportView(
                     null,
                     ev, //ログインしている従業員を、日報作成者として登録
                     day,
                     getRequestParam(AttributeConst.REP_TITLE),
-                    getRequestParam(AttributeConst.REP_COUNT),
+                    getRequestParam(AttributeConst.REP_CONTENT),
                     null,
                     null);
 
@@ -138,5 +138,28 @@ public class ReportAction extends ActionBase {
             }
         }
 
+    }
+
+    /**
+     * 詳細画面を表示する
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void show() throws ServletException, IOException {
+
+        //idを条件に日報データを取得する
+        ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+
+        if (rv == null) {
+            //該当の日報データが存在しない場合はエラー画面を表示
+            forward(ForwardConst.FW_ERR_UNKNOWN);
+
+        } else {
+
+            putRequestScope(AttributeConst.REPORT, rv); //取得した日報データ
+
+            //詳細画面を表示
+            forward(ForwardConst.FW_REP_SHOW);
+        }
     }
 }

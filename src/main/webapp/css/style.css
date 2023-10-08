@@ -32,7 +32,9 @@ table#report_list .report_action {
     width: 13%;
 }
 
-
+pre {
+    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+}
 #content {
     width: 94%;
     margin-top: 15px;
