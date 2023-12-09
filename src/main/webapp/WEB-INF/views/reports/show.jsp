@@ -1,11 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page import="constants.ForwardConst" %>
+<%@ page import="constants.ForwardConst"%>
 
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
+<c:set var="commlikeCount" value="${ForwardConst.CMD_LIKE_COUNT.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
@@ -20,7 +22,8 @@
                 </tr>
                 <tr>
                     <th>日付</th>
-                    <fmt:parseDate value="${report.reportDate}" pattern="yyyy-MM-dd" var="reportDay" type="date" />
+                    <fmt:parseDate value="${report.reportDate}" pattern="yyyy-MM-dd"
+                        var="reportDay" type="date" />
                     <td><fmt:formatDate value='${reportDay}' pattern='yyyy-MM-dd' /></td>
                 </tr>
                 <tr>
@@ -29,22 +32,41 @@
                 </tr>
                 <tr>
                     <th>登録日時</th>
-                    <fmt:parseDate value="${report.createdAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="createDay" type="date" />
-                    <td><fmt:formatDate value="${createDay}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                    <fmt:parseDate value="${report.createdAt}"
+                        pattern="yyyy-MM-dd'T'HH:mm:ss" var="createDay" type="date" />
+                    <td><fmt:formatDate value="${createDay}"
+                            pattern="yyyy-MM-dd HH:mm:ss" /></td>
                 </tr>
                 <tr>
                     <th>更新日時</th>
-                    <fmt:parseDate value="${report.updatedAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="updateDay" type="date" />
-                    <td><fmt:formatDate value="${updateDay}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                    <fmt:parseDate value="${report.updatedAt}"
+                        pattern="yyyy-MM-dd'T'HH:mm:ss" var="updateDay" type="date" />
+                    <td><fmt:formatDate value="${updateDay}"
+                            pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                </tr>
+                <tr>
+                    <th>いいね数</th>
+                    <td><c:out value="${report.likeCount}" /></td>
                 </tr>
             </tbody>
         </table>
 
-        <c:if test="${sessionScope.login_employee.id == report.employee.id}">
+        <c:if test="${sessionScope.login_employee.id == report.employee.id && likes_count == 0}"> <!--いいねした人一覧機能追加(拡張2)-->
             <p>
-                <a href="<c:url value='?action=${actRep}&command=${commEdt}&id=${report.id}' />">この日報を編集する</a>
+                <a
+                    href="<c:url value='?action=${actRep}&command=${commEdt}&id=${report.id}' />">この日報を編集する</a>
             </p>
         </c:if>
+
+    <!-- ↓ここからいいね機能追加項目（拡張1),いいねした人一覧機能追加（拡張２）↓-->
+        <c:if test="${sessionScope.login_employee.id != report.employee.id && likes_count == 0}">
+            <p>
+                <a
+                    href="<c:url value='?action=${actRep}&command=${commlikeCount}&id=${report.id}' />">この日報にいいねする</a>
+
+            </p>
+        </c:if>
+    <!-- ↑ここまで追加項目↑ -->
 
         <p>
             <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">一覧に戻る</a>

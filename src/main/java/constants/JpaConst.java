@@ -40,20 +40,43 @@ public interface JpaConst {
     String REP_COL_CONTENT = "content"; //日報の内容
     String REP_COL_CREATED_AT = "created_at"; //登録日時
     String REP_COL_UPDATED_AT = "updated_at"; //更新日時
+    String REP_COL_LIKE_COUNT = "like_count"; //追加項目→いいね数（拡張1）
+
+    //いいねテーブル (↓ ここから、いいねした人一覧機能追加項目（拡張2） ↓)
+    String TABLE_LIKE = "likes"; //テーブル名
+    //いいねテーブルカラム
+    String LIKE_COL_ID = "id"; //id
+    String LIKE_COL_REP = "report_id"; //いいねした日報のid
+    String LIKE_COL_EMP = "employee_id"; //いいねした従業員のid
+    String LIKE_COL_CREATED_AT = "created_at"; //いいねした日時
+    String LIKE_COL_UPDATED_AT = "updated_at"; //更新日時
+    // (↑ ここまで、いいねした人一覧機能追加項目（拡張2) ↑)
 
     //Entity名
     String ENTITY_EMP = "employee"; //従業員
     String ENTITY_REP = "report"; //日報
+    String ENTITY_LIKE ="like"; //いいね (いいねした人一覧機能追加項目(拡張2))
 
     //JPQL内パラメータ
     String JPQL_PARM_CODE = "code"; //社員番号
     String JPQL_PARM_PASSWORD = "password"; //パスワード
     String JPQL_PARM_EMPLOYEE = "employee"; //従業員
+    String JPQL_PARM_REPORT = "report"; //日報(いいねした人一覧機能追加項目(拡張2))
 
     //NamedQueryの nameとquery
     //全ての従業員をidの降順に取得する
     String Q_EMP_GET_ALL = ENTITY_EMP + ".getAll"; //name
     String Q_EMP_GET_ALL_DEF = "SELECT e FROM Employee AS e ORDER BY e.id DESC"; //query
+
+    // ↓ ここから、いいねした人一覧機能追加部分(拡張2) ↓
+    String Q_LIKE_GET_ALL_MINE = ENTITY_LIKE + ".getAllMine";
+    String Q_LIKE_GET_ALL_MINE_DEF= "SELECT l FROM Like AS l WHERE l.report = :"+ JPQL_PARM_REPORT + " ORDER BY l.id DESC";
+    String Q_LIKE_COUNT_ALL_MINE = ENTITY_LIKE +".countAllMine";
+    String Q_LIKE_COUNT_ALL_MINE_DEF = "SELECT COUNT(l) FROM Like AS l WHERE l.report = :" + JPQL_PARM_REPORT;
+    String Q_LIKE_COUNT_LIKED = ENTITY_LIKE + ".countLiked";
+    String Q_LIKE_COUNT_LIKED_DEF = "SELECT COUNT(l) FROM Like AS l WHERE l.report = :" + JPQL_PARM_REPORT + " AND l.employee = :"+ JPQL_PARM_EMPLOYEE;
+    // ↑ ここまでが、いいねした人一覧機能追加部分(拡張2) ↑
+
     //全ての従業員の件数を取得する
     String Q_EMP_COUNT = ENTITY_EMP + ".count";
     String Q_EMP_COUNT_DEF = "SELECT COUNT(e) FROM Employee AS e";

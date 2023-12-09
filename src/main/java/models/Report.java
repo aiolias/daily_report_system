@@ -27,10 +27,18 @@ import lombok.Setter;
  */
 @Table(name = JpaConst.TABLE_REP)
 @NamedQueries({
-        @NamedQuery(name = JpaConst.Q_REP_GET_ALL, query = JpaConst.Q_REP_GET_ALL_DEF),
-        @NamedQuery(name = JpaConst.Q_REP_COUNT, query = JpaConst.Q_REP_COUNT_DEF),
-        @NamedQuery(name = JpaConst.Q_REP_GET_ALL_MINE, query = JpaConst.Q_REP_GET_ALL_MINE_DEF),
-        @NamedQuery(name = JpaConst.Q_REP_COUNT_ALL_MINE, query = JpaConst.Q_REP_COUNT_ALL_MINE_DEF)
+        @NamedQuery(
+                    name = JpaConst.Q_REP_GET_ALL,
+                    query = JpaConst.Q_REP_GET_ALL_DEF),
+        @NamedQuery(
+                    name = JpaConst.Q_REP_COUNT,
+                    query = JpaConst.Q_REP_COUNT_DEF),
+        @NamedQuery(
+                    name = JpaConst.Q_REP_GET_ALL_MINE,
+                    query = JpaConst.Q_REP_GET_ALL_MINE_DEF),
+        @NamedQuery(
+                    name = JpaConst.Q_REP_COUNT_ALL_MINE,
+                    query = JpaConst.Q_REP_COUNT_ALL_MINE_DEF)
 })
 
 @Getter //全てのクラスフィールドについてgetterを自動生成する(Lombok)
@@ -85,4 +93,10 @@ public class Report {
      */
     @Column(name = JpaConst.REP_COL_UPDATED_AT, nullable = false)
     private LocalDateTime updatedAt;
+
+    /**
+     * いいね数(拡張１・追加項目)
+     */
+    @Column(name = JpaConst.REP_COL_LIKE_COUNT, nullable = false)
+    private Integer likeCount;
 }

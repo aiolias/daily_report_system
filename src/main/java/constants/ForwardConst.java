@@ -27,6 +27,8 @@ public enum ForwardConst {
     CMD_EDIT("edit"),
     CMD_UPDATE("update"),
     CMD_DESTROY("destroy"),
+    CMD_LIKE_COUNT("likeCount"), //いいね機能追加部分（拡張１）
+    CMD_LIKES("likes"), //(いいねした人一覧機能追加部分(拡張２))
 
     //jsp
     FW_ERR_UNKNOWN("error/unknown"),
@@ -39,7 +41,8 @@ public enum ForwardConst {
     FW_REP_INDEX("reports/index"),
     FW_REP_SHOW("reports/show"),
     FW_REP_NEW("reports/new"),
-    FW_REP_EDIT("reports/edit");
+    FW_REP_EDIT("reports/edit"),
+    FW_REP_LIKES("reports/likes"); //いいねした人一覧機能追加（拡張２）
 
     /**
      * 文字列

@@ -49,7 +49,10 @@ public enum AttributeConst {
     REP_ID("id"),
     REP_DATE("report_date"),
     REP_TITLE("title"),
-    REP_CONTENT("content_msg");
+    REP_CONTENT("content_msg"),
+    GOOD_COUNT("good_count"), //いいね機能追加部分(拡張１)
+    REP_LIKES("likes"), //いいねした人一覧機能追加部分（拡張２）
+    REP_LIKES_COUNT("likes_count");  //いいねした人一覧機能追加部分（拡張２）
 
 
     private final String text;
